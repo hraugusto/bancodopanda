@@ -23,7 +23,7 @@ namespace Caixa_Eletronico.Servicos
         public Conta BuscarConta(int numero)
         {
             return _context.BuscarContaPorNumero(numero)
-                ?? throw new InvalidOperationException("Conta n„o encontrada.");
+                ?? throw new InvalidOperationException("Conta n√£o encontrada.");
         }
 
         public void Depositar(int numeroConta, decimal valor)
@@ -49,9 +49,7 @@ namespace Caixa_Eletronico.Servicos
             conta.Sacar(valor);
             _context.AtualizarSaldo(conta.Id, conta.Saldo);
 
-            // Busca o saldo atualizado do banco para garantir que est· correto (mais f·cil para iniciantes)
             var contaAtualizada = BuscarConta(numeroConta);
-            // Se quiser mostrar o saldo atualizado, pode usar: contaAtualizada.Saldo
 
             var transacao = new Transacao
             {
@@ -102,4 +100,5 @@ namespace Caixa_Eletronico.Servicos
             _context?.Dispose();
         }
     }
+
 }
